@@ -5,9 +5,11 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "asposewordscloud": "^22.5.0",
     "docx": "^7.3.0",
     "docx4js": "^3.2.20",
-    "officegen": "^0.6.5"
+    "officegen": "^0.6.5",
+    "readline": "^1.3.0"
   },
   "scripts": {
     "start": "node index.js"
