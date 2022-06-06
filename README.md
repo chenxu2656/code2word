@@ -10,7 +10,7 @@
 - [x] 忽略文件夹
 - [x] 少于60页全部导出，多余60页导出前后30页
 - [x] 每页不低于50行
-- [x] 指定 
+- [x] 指定开始文件，放在word最前方
 - [ ] 页眉
 - [ ] 页码
 
@@ -23,18 +23,20 @@ git clone https://github.com/chenxu2656/code2word.git
 ```
 #### 2.修改export.js参数
 
-- `dirPath`: `String`,导出的文件夹路径，绝对路径
+- `dirPath`: `String`,导出的文件夹路径，绝对｜相对 路径
 - `ignoreFolder`: `[Array]`,忽略的文件夹名
 - `filename`: `String`, 导出文件名，不需要加后缀
-  
+- `startFile`: `String`,指定开始文件，放在word最前方
 ```
 import exportDoc from './index.js'
-
-const dirPath = '/Users/chenxu/Desktop/aitmed/aitmed/provider'
+// 相对路径
+const dirPath = './'
+// 绝对路径
+// const dirPath = '/Users/chenxu/Desktop/myPro/code2word'
 const ignoreFolder = ['assets','dataSource']
-const filename = 'patient'
-
-exportDoc(dirPath,ignoreFolder,filename)
+const filename = 'code2word'
+const startFile = 'index.js'
+exportDoc(dirPath,startFile,ignoreFolder,filename)
 ```
 
 #### 3. 导出文件

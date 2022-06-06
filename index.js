@@ -25,7 +25,7 @@ const exportFilePath = (dir,ignoreFolder=[],fileNameList=[])=>{
             exportFilePath(fullPath,ignoreFolder,fileNameList)
         } else{
             if(!(item.endsWith('.png') || item.endsWith('.PNG') || item.endsWith('.svg') || item.endsWith('.SVG') || item.endsWith('.ico'))){
-               fileNameList.push(fullPath) 
+                fileNameList.push(fullPath) 
             }
             
         }
@@ -80,12 +80,17 @@ const handleCodeLine = (file)=>{
  * @param {*} ignoreFolder 
  * @param {*} filename 
  */
-export default async(dirPath,ignoreFolder,filename)=>{
-    const res = exportFilePath(dirPath,ignoreFolder)
-    writeToTxt(res)
+export default async(dirPath,startFilePath,ignoreFolder,filename)=>{
+    const resFileList = exportFilePath(dirPath,ignoreFolder)
+    const fullStartPath = path.join(dirPath,startFilePath)
+    const startIndex = resFileList.findIndex(item=>item==fullStartPath)
+    if (!(startIndex == -1)) {
+        resFileList.splice(startIndex,1)
+        resFileList.unshift(fullStartPath)
+    }
+    console.log(resFileList);
+    writeToTxt(resFileList)
     const at = await handleCodeLine('test.txt')
-    // 删除test.txt 文件
-    console.log(at);
     fs.unlink('test.txt',(err)=>{
         if (err) {
             return console.error(err);
@@ -104,6 +109,8 @@ export default async(dirPath,ignoreFolder,filename)=>{
     //     font_size: 9,
     //     font_face: 'Times New Roman',
     // })
+    
     docx.generate(docsFile)
+    console.log('Successful!');
 }
 
