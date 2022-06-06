@@ -95,7 +95,6 @@ export default async(dirPath,startFilePath,ignoreFolder,filename)=>{
         if (err) {
             return console.error(err);
         }
-        console.log("文件删除成功！");
     })
     const docsFile = fs.createWriteStream(`./${filename}.docx`)
     const code = docx.createP()
