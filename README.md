@@ -1,5 +1,4 @@
-<h2 style="display: block; text-align: center;">Code2Word</h2>
----
+<h2 style="display: block; text-align: center; width:100%">Code2Word</h2>
 
 ## Description
 把源代码导出为word，方便申请软件著作权申请。
