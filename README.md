@@ -45,6 +45,4 @@ exportDoc(dirPath,startFile,ignoreFolder,filename)
 
 ## DEMO
 
-<video width="500" controls>
-<source src="http://qiniu-btfblog-bucket.xccit.cn/code2word.mp4" type="video/mp4">您的浏览器不支持 HTML5 video 标签。
-</video>
+<video src="[视频链接](http://qiniu-btfblog-bucket.xccit.cn/code2word.mp4)" controls="controls" width="500" height="300">您的浏览器不支持播放该视频！</video>
