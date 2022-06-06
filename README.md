@@ -17,9 +17,13 @@
 
 ## Start
 ### 方法1: 直接clone项目导出
-#### 1.克隆项目
+#### 1.克隆项目并安装
 ```
 git clone https://github.com/chenxu2656/code2word.git
+
+yarn 
+or
+npm i
 ```
 #### 2.修改export.js参数
 
