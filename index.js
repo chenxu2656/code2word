@@ -1,6 +1,5 @@
 import fs from 'fs'
 import path from 'path'
-import {Document, Packer, Paragraph} from 'docx'
 const defaultIgnore = ['Dockerfile',".git",'.gitignore','.dockerignore','node_modules','package.json',"yarn.lock","package-lock.json"]
 import officegen from 'officegen'
 let docx = officegen({
