@@ -3,7 +3,7 @@ import exportDoc from './index.js'
 const dirPath = './'
 // 绝对路径
 // const dirPath = '/Users/chenxu/Desktop/myPro/code2word'
-const ignoreFolder = ['assets','dataSource']
+const ignoreFolder = ['images']
 const filename = 'code2word'
 const startFile = 'index.js'
 exportDoc(dirPath,startFile,ignoreFolder,filename)

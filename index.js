@@ -100,7 +100,7 @@ export default async(dirPath,startFilePath,ignoreFolder,filename)=>{
     const docsFile = fs.createWriteStream(`./${filename}.docx`)
     const code = docx.createP()
     code.addText(at,{
-        font_size: 10,
+        font_size: 9.5,
         font_face: 'Times New Roman',
     })
     // 写入页眉
