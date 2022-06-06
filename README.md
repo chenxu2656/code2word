@@ -7,7 +7,7 @@
 ## ToDoList
 ![官方要求](./images/require.jpg)
 
-- [x] 忽略文件夹
+- [x] 允许输入忽略文件夹、默认忽略.lock、package.json、node_module等文件
 - [x] 少于60页全部导出，多余60页导出前后30页
 - [x] 每页不低于50行
 - [x] 指定开始文件，放在word最前方
