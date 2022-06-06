@@ -42,3 +42,9 @@ exportDoc(dirPath,startFile,ignoreFolder,filename)
 #### 3. 导出文件
 
 `npm run export`
+
+## DEMO
+
+<video width="500" controls>
+<source src="http://qiniu-btfblog-bucket.xccit.cn/code2word.mp4" type="video/mp4">您的浏览器不支持 HTML5 video 标签。
+</video>s
