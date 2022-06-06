@@ -45,4 +45,4 @@ exportDoc(dirPath,startFile,ignoreFolder,filename)
 
 ## DEMO
 
-<video src="[视频链接](http://qiniu-btfblog-bucket.xccit.cn/code2word.mp4)" controls="controls" width="500" height="300">您的浏览器不支持播放该视频！</video>
+<video src="http://qiniu-btfblog-bucket.xccit.cn/code2word.mp4" controls="controls" width="500" height="300">您的浏览器不支持播放该视频！</video>
