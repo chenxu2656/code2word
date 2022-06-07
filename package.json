@@ -12,6 +12,6 @@
     "readline": "^1.3.0"
   },
   "scripts": {
-    "export": "node export.js"
+    "export": "node index.js"
   }
 }
