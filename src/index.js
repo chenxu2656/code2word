@@ -80,10 +80,12 @@ const handleCodeLine = (file)=>{
  * @param {*} dirPath 
  * @param {*} ignoreFolder 
  * @param {*} filename 
+ * @param {*} startFile
  */
-export default async(dirPath,startFilePath,ignoreFolder,filename)=>{
-    const resFileList = exportFilePath(dirPath,ignoreFolder)
-    const fullStartPath = path.join(dirPath,startFilePath)
+export default async(obj)=>{
+    console.log(obj);
+    const resFileList = exportFilePath(obj.dirPath,obj.ignoreFolder)
+    const fullStartPath = path.join(obj.dirPath, obj.startFile)
     const startIndex = resFileList.findIndex(item=>item==fullStartPath)
     if (!(startIndex == -1)) {
         resFileList.splice(startIndex,1)
@@ -96,7 +98,7 @@ export default async(dirPath,startFilePath,ignoreFolder,filename)=>{
             return console.error(err);
         }
     })
-    const docsFile = fs.createWriteStream(`./${filename}.docx`)
+    const docsFile = fs.createWriteStream(`./${obj.filename}.docx`)
     const code = docx.createP()
     code.addText(at,{
         font_size: 9.5,
