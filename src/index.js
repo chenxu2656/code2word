@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import officegen from 'officegen'
 import readline from 'readline'
-const defaultIgnore = ['Dockerfile',".git",'.gitignore','.dockerignore','node_modules','package.json',"yarn.lock","package-lock.json"]
+const defaultIgnore = ['.DS_Store','Dockerfile',".git",'.gitignore','.dockerignore','node_modules','package.json',"yarn.lock","package-lock.json"]
 let arrSplit = ''
 let docx = officegen({
     type: 'docx',
@@ -20,7 +20,7 @@ const exportFilePath = (dir,ignoreFolder=[],fileNameList=[])=>{
     fileList.forEach((item)=>{
         const fullPath = path.join(dir,item)
         const fileStat = fs.statSync(fullPath)
-        if (defaultIgnore.indexOf(item) != -1 || item.startsWith('.') || ignoreFolder.indexOf(item)!= -1) {
+        if (defaultIgnore.indexOf(item) != -1 || ignoreFolder.indexOf(item)!= -1) {
         } else if (fileStat.isDirectory()) {
             exportFilePath(fullPath,ignoreFolder,fileNameList)
         } else{
@@ -32,6 +32,29 @@ const exportFilePath = (dir,ignoreFolder=[],fileNameList=[])=>{
     })
     return fileNameList
 }
+/**
+ * @description 返回文件类型
+ * @param {*} filepath 文件路径
+ * @return {*} 
+ */
+const fileExtension = (filepath)=>{
+    return path.extname(filepath)
+}
+/**
+ * @description 根据文件路径列表匹配想导出的文件类型
+ * @param {Array} fileList 文件路径列表
+ * @param {Array} extensions 文件类型拓展 
+ * @return {Array} 处理后的文件路径
+ */
+const handleIgnoreFile = (fileList, extensions)=>{
+    if(!extensions) {
+        return fileList
+    }
+    return fileList.filter((item)=>{
+        return extensions.includes(fileExtension(item)) 
+    })
+}
+
 /**
  * @description 根据文件路径数组，生成txt文件，包含所有code
  * @param {Array} pathList 路径数组 
@@ -83,15 +106,19 @@ const handleCodeLine = (file)=>{
  * @param {*} startFile
  */
 export default async(obj)=>{
-    console.log(obj);
     const resFileList = exportFilePath(obj.dirPath,obj.ignoreFolder)
+    console.log(resFileList);
+    console.log(obj.extensions);
+    const  handledList = handleIgnoreFile(resFileList,obj.extensions)
     const fullStartPath = path.join(obj.dirPath, obj.startFile)
-    const startIndex = resFileList.findIndex(item=>item==fullStartPath)
+
+    const startIndex = handledList.findIndex(item=>item==fullStartPath)
     if (!(startIndex == -1)) {
-        resFileList.splice(startIndex,1)
-        resFileList.unshift(fullStartPath)
+        handledList.splice(startIndex,1)
+        handledList.unshift(fullStartPath)
     }
-    writeToTxt(resFileList)
+    console.log(handledList);
+    writeToTxt(handledList)
     const at = await handleCodeLine('test.txt')
     fs.unlink('test.txt',(err)=>{
         if (err) {

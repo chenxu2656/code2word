@@ -12,6 +12,7 @@
 - [x] 每页不低于50行
 - [x] 指定开始文件，放在word最前方
 - [x] 返回代码行数
+- [x] 指定导出文件类型
 - [ ] 页眉
 - [ ] 页码
 
@@ -32,17 +33,29 @@ npm i
 - `ignoreFolder`: `[Array]`,忽略的文件夹名
 - `filename`: `String`, 导出文件名，不需要加后缀
 - `startFile`: `String`,指定开始文件，放在word最前方
+- `extensions`: `String`,指定导出文件拓展，
 ```
+import exportDoc from './src/index.js'
+
 // 想要导出的文件夹相对路径
 const dirPath = './'
 // 绝对路径
 // const dirPath = '/Users/chenxu/Desktop/myPro/code2word'
 // 忽略、不导出的文件夹，直接写文件夹名就行，不需要写路径
-const ignoreFolder = ['Docs','images']
+const ignoreFolder = ['Docs','images','node_modules']
 // 导出word文档的名字
 const filename = 'btfblog'
 // 程序起始文件，需要写明路径，如 'src/index.js'
 const startFile = 'main.js'
+// 指定导出类型拓展
+const extensions = ['.js']
+exportDoc({
+    dirPath: dirPath,
+    startFile: startFile,
+    ignoreFolder:ignoreFolder,
+    filename:filename,
+    extensions: extensions
+})
 ```
 
 #### 3. 导出文件
