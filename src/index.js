@@ -62,6 +62,7 @@ const handleCodeLine = (file)=>{
         lineRead.on('line',(data)=>{
             arr.push(data)
         }).on('close',()=>{
+            console.log(`代码总行数：${arr.length}`);
             if(arr.length > 3200) {
                 const splitStart = 1600;
                 const splitEnd = arr.length-3200
@@ -88,7 +89,6 @@ export default async(dirPath,startFilePath,ignoreFolder,filename)=>{
         resFileList.splice(startIndex,1)
         resFileList.unshift(fullStartPath)
     }
-    console.log(resFileList);
     writeToTxt(resFileList)
     const at = await handleCodeLine('test.txt')
     fs.unlink('test.txt',(err)=>{
