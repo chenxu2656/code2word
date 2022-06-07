@@ -26,22 +26,23 @@ yarn
 or
 npm i
 ```
-#### 2.修改export.js参数
+#### 2.index.js参数
 
 - `dirPath`: `String`,导出的文件夹路径，绝对｜相对 路径
 - `ignoreFolder`: `[Array]`,忽略的文件夹名
 - `filename`: `String`, 导出文件名，不需要加后缀
 - `startFile`: `String`,指定开始文件，放在word最前方
 ```
-import exportDoc from './index.js'
-// 相对路径
+// 想要导出的文件夹相对路径
 const dirPath = './'
 // 绝对路径
 // const dirPath = '/Users/chenxu/Desktop/myPro/code2word'
-const ignoreFolder = ['assets','dataSource']
-const filename = 'code2word'
-const startFile = 'index.js'
-exportDoc(dirPath,startFile,ignoreFolder,filename)
+// 忽略、不导出的文件夹，直接写文件夹名就行，不需要写路径
+const ignoreFolder = ['Docs','images']
+// 导出word文档的名字
+const filename = 'btfblog'
+// 程序起始文件，需要写明路径，如 'src/index.js'
+const startFile = 'main.js'
 ```
 
 #### 3. 导出文件
