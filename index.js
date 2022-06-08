@@ -11,7 +11,7 @@ const filename = 'btfblog'
 // 程序起始文件，需要写明路径，如 'src/index.js'
 const startFile = 'main.js'
 
-const extensions = ['.js']
+const extensions = ['.swift']
 exportDoc({
     dirPath: dirPath,
     startFile: startFile,

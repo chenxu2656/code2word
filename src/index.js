@@ -3,7 +3,6 @@ import path from 'path'
 import officegen from 'officegen'
 import readline from 'readline'
 const defaultIgnore = ['.DS_Store','Dockerfile',".git",'.gitignore','.dockerignore','node_modules','package.json',"yarn.lock","package-lock.json"]
-let arrSplit = ''
 let docx = officegen({
     type: 'docx',
     pageSize: "A4",
@@ -31,6 +30,7 @@ const exportFilePath = (dir,ignoreFolder=[],fileNameList=[])=>{
         }
     })
     return fileNameList
+    
 }
 /**
  * @description 返回文件类型
@@ -91,7 +91,7 @@ const handleCodeLine = (file)=>{
                 const splitEnd = arr.length-3200
                 arr.splice(splitStart,splitEnd)
             }
-            arrSplit = arr.join('\n')
+            let arrSplit = arr.join('\n')
             res(arrSplit)
         })
     })
@@ -106,10 +106,12 @@ const handleCodeLine = (file)=>{
  * @param {*} startFile
  */
 export default async(obj)=>{
-    const resFileList = exportFilePath(obj.dirPath,obj.ignoreFolder)
-    console.log(resFileList);
-    console.log(obj.extensions);
-    const  handledList = handleIgnoreFile(resFileList,obj.extensions)
+    const fileNameList = exportFilePath(obj.dirPath,obj.extensions,obj.ignoreFolder)
+    const handledList = handleIgnoreFile(fileNameList,obj.extensions)
+    if (handledList.length == 0) {
+        console.log('ops: 没有符合条件的文件，请检查 extensions');
+        return
+    }
     const fullStartPath = path.join(obj.dirPath, obj.startFile)
 
     const startIndex = handledList.findIndex(item=>item==fullStartPath)
